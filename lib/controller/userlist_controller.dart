@@ -7,20 +7,18 @@ import 'package:get/get.dart';
 class UserListController extends GetxController{
 
 
+  RxBool isLoading = false.obs;
   RxString nullText = ''.obs;
 
 
 
-  RxList<UserModel> orders = <UserModel>[].obs;
+  // RxList<UserModel> orders = <UserModel>[].obs;
+  var orders = <UserModel>[].obs;
 
 
   getDetail()async{
     var apiData = await Api.getUsers();
-    print(apiData.toString());
-    // var apiData = await Api.ListOrders("24.88305", "67.05390");
     if (apiData!=null) {
-      print(apiData.toString());
-      orders.clear();
       if(apiData["data"].length>0){
         for(var i=0;i<apiData["data"].length;i++){
           orders.add(UserModel(
@@ -31,11 +29,12 @@ class UserListController extends GetxController{
               avatar: apiData["data"][i]["avatar"].toString()
           ));
         }
-        print(orders.length.toString()+"this is the lenght of the list");
       } else{
         nullText.value = "no User Found";
       }
+      isLoading.value = true;
     } else{
+      isLoading.value = true;
       nullText.value = "Please Check Your Internet Connection";
     }
   }

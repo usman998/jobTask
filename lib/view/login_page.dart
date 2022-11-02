@@ -1,3 +1,4 @@
+import 'package:cr_task/controller/userlist_controller.dart';
 import 'package:cr_task/view/user_list.dart';
 import 'package:cr_task/widget/custom_button.dart';
 import 'package:cr_task/widget/custom_checkbox.dart';
@@ -135,7 +136,12 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           SizedBox(height: _height*0.05,),
                           CustomButton(buttonHeight: _height*0.06, buttonWidth: _width*0.5, btnColor: Colors.indigo, shadowColor: Colors.indigo.shade300,
-                              onPress: (){Get.to(()=>const UserList());}, mainWidget: Text(
+                              onPress: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const UserList()),
+                                );
+                              }, mainWidget: Text(
                             "GiRiS YAP",style: TextStyle(
                               color: Colors.white,fontSize: 18,fontWeight: FontWeight.w400
                           ),

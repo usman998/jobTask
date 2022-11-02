@@ -15,6 +15,7 @@ class UserList extends StatefulWidget {
 class _UserListState extends State<UserList> {
 
   final UserListController orderController = Get.put(UserListController());
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
@@ -28,7 +29,9 @@ class _UserListState extends State<UserList> {
           color: Colors.white,fontWeight: FontWeight.w400,fontSize: 22
         ),),
       ),
-      body: (Obx(()=>orderController.orders.length==0?Container(
+      body: (Obx(()=>orderController.isLoading==false?Container(
+        width: _width,height: _height,child: Center(child: CircularProgressIndicator(),),
+      ):orderController.orders.length==0?Container(
           width: _width,height: _height,child:Center(child: Text(orderController.nullText.value.toString()))
       ):SingleChildScrollView(
         child: Column(
