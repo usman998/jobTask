@@ -12,8 +12,8 @@ class UserListController extends GetxController{
 
 
 
-  // RxList<UserModel> orders = <UserModel>[].obs;
-  var orders = <UserModel>[].obs;
+  RxList<UserModel> orders = <UserModel>[].obs;
+  // var orders = <UserModel>[].obs;
 
 
   getDetail()async{
